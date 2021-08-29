@@ -1,17 +1,15 @@
 import { Algorithm } from './Algorithm';
-import { sleep } from '../utils/sleep';
-import { config } from '../state/config';
 
 export class BubbleSort extends Algorithm {
-    private p = 0;
+    private index = 0;
 
     protected onReset() {
-        this.p = 0;
+        this.index = 0;
     }
 
     protected async sort() {
-        const a = this.data[this.p],
-            b = this.data[this.p + 1];
+        const a = this.data[this.index],
+            b = this.data[this.index + 1];
 
         if (a.state === 'sorted') return this.done();
 
@@ -21,7 +19,7 @@ export class BubbleSort extends Algorithm {
 
         if (!b || b.state === 'sorted') {
             a.state = 'sorted';
-            this.p = 0;
+            this.index = 0;
             return await this.sort();
         } else {
             b.state = 'active';
@@ -30,10 +28,10 @@ export class BubbleSort extends Algorithm {
         if (b.val < a.val) {
             await a.swapWith(b, this.data);
         } else {
-            await sleep(config.get('switchDuration') / 2);
+            await this.sleep();
         }
 
-        this.p++;
+        this.index++;
         a.state = 'idle';
         b.state = 'idle';
 
