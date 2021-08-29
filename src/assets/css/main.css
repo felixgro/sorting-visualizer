@@ -1,0 +1,207 @@
+@font-face {
+	font-family: 'Nunito';
+	weight: 400;
+	src: url('../assets/fonts/Nunito-Regular.ttf'));
+}
+
+@font-face {
+	font-family: 'Nunito';
+	weight: 600;
+	src: url('../assets/fonts/Nunito-Bold.ttf'));
+}
+
+@font-face {
+	font-family: 'Nunito';
+	weight: 800;
+	src: url('../assets/fonts/Nunito-ExtraBold.ttf'));
+}
+
+html {
+	font-family: 'Nunito', sans-serif;
+	background: #17181f;
+	color: #e2e4ea;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+button {
+	background: none;
+	border: none;
+	& svg path {
+		fill: #27e8a7;
+	}
+}
+
+main {
+	box-sizing: border-box;
+	padding: 50px;
+
+	--border-radius: 20px;
+
+	& svg {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0 var(--border-radius);
+	}
+
+	& .controls {
+		box-sizing: border-box;
+		padding: 20px;
+		margin-top: 15px;
+		border-radius: var(--border-radius);
+		background: #1c1e27;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		& .user-inputs {
+			display: flex;
+			& .form-section {
+				position: relative;
+				margin-left: 25px;
+				&:first-of-type {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}
+
+label {
+	display: block;
+	color: #2e3646;
+	font-weight: 800;
+	font-size: 15px;
+	margin-bottom: 6px;
+}
+
+.number-input {
+	position: relative;
+	width: 100px;
+	& input {
+		background: #21232d;
+		color: inherit;
+		box-sizing: border-box;
+		border-radius: 12px;
+		padding: 10px;
+		font-size: 19px;
+		border: 3px solid #272b37;
+		width: 100%;
+
+		&:focus {
+			outline: none;
+			border-color: #4f4dbf;
+		}
+	}
+	& .number-controls {
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		right: 7px;
+		top: 50%;
+		transform: translateY(-50%);
+		& button {
+			background: #272b37;
+			width: 28px;
+			height: 16px;
+			overflow: hidden;
+			cursor: pointer;
+			& img {
+				width: 16px;
+				height: 16px;
+				pointer-events: none;
+			}
+			&.increment {
+				border-radius: 3px 7px 3px 3px;
+				margin-bottom: 3px;
+			}
+			&.decrement {
+				border-radius: 3px 3px 7px 3px;
+			}
+		}
+	}
+}
+
+/** HIDE DEFAULT NUMBER INPUT ARROWS */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+.speed-slider {
+	box-sizing: border-box;
+	background: #1C1E28;
+	border: 3px solid #272b37;
+	border-radius: 12px;
+	display: flex;
+	& button {
+		box-sizing: border-box;
+		border: 3px solid transparent;
+		border-radius: 10px;
+		width: 60px;
+		padding: 7px;
+		font-size: 19px;
+		color: inherit;
+		&:focus {
+			outline: none;
+			border: 3px solid #4f4dbf !important;
+		}
+
+		&.active {
+			background: #272B37;
+			border: 3px solid #1C1E28;
+		}
+	}
+}
+
+select {
+	box-sizing: border-box;
+	background: #21232D;
+	border: 3px solid #272B37;
+	padding: 10px;
+	border-radius: 12px;
+	font-size: 18px;
+	color: inherit;
+	width: 170px;
+	&:focus {
+		outline: none;
+		border: 3px solid #4f4dbf !important;
+	}
+}
+
+.selector {
+	position: relative;
+	& .select-button {
+		position: absolute;
+		width: 28px;
+		height: 16px;
+		overflow: hidden;
+		cursor: pointer;
+		pointer-events: none;
+		border-radius: 7px;
+		right: 6px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}

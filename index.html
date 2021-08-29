@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithms</title>
+
+    <link rel="stylesheet" href="./src/assets/css/main.css">
+</head>
+
+<body>
+    <main>
+        <svg class="visualizer"></svg>
+
+        <form class="controls">
+            <div class="user-inputs">
+                <div class="form-section">
+                    <algorithm-selector />
+                </div>
+                <div class="form-section">
+                    <speed-slider />
+                </div>
+                <div class="form-section">
+                    <number-input label="Amount" config-key="amount" />
+                </div>
+                <div class="form-section">
+                    <number-input label="Margin" config-key="margin" />
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script defer src="./src/main.ts" type="module"></script>
+</body>
+
+</html>
