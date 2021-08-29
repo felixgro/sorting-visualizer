@@ -50,7 +50,7 @@ class AlgorithmSelector extends HTMLElement {
         `;
 
         Object.keys(this.algorithms).forEach((key) => {
-            template += `<option value="${key}" ${this.value === this.algorithms[key] ? 'selected' : ''}>${this.algorithms[key]}</option>`
+            template += `<option value="${key}" ${this.value === key ? 'selected' : ''}>${this.algorithms[key]}</option>`
         });
 
         template += '</select>'
