@@ -1,14 +1,15 @@
+type ComputeCallback<Observable> = ((data: Observable) => void);
 type ObserveCallback = (newValue: any, oldValue: any) => void;
 
 export const reactive = <ObservableObject extends { [key: string]: any }>(data: ObservableObject): ReactiveObject<ObservableObject> => new ReactiveObject(data);
 
-export class ReactiveObject<ObservableObject> {
+export class ReactiveObject<Observable> {
     private registeredObservers: { [key: string]: ObserveCallback[] } = {};
-    private registeredComputes: { [key: string]: (data: ObservableObject) => void } = {};
-    private registeredObserveAll: Array<(changedProp: string, data: ObservableObject) => void> = [];
+    private registeredComputes: { [key: string]: (data: Observable) => void } = {};
+    private registeredObserveAll: Array<(changedProp: string, data: Observable) => void> = [];
 
     constructor(
-        public data: ObservableObject
+        public data: Observable
     ) { }
 
     get(key: string): any {
@@ -28,7 +29,7 @@ export class ReactiveObject<ObservableObject> {
         this.registeredObserveAll.forEach(fn => fn.call(this, key, this.data));
     }
 
-    observe(key: keyof ObservableObject, onUpdate: ObserveCallback, immediate = false) {
+    observe(key: keyof Observable, onUpdate: ObserveCallback, immediate = false) {
         if (!this.registeredObservers[key as string])
             this.registeredObservers[key as string] = [];
 
@@ -38,11 +39,15 @@ export class ReactiveObject<ObservableObject> {
         this.registeredObservers[key as string].push(onUpdate);
     }
 
-    observeAll(onUpdate: (changedProp: string, data: ObservableObject) => void) {
+    observeAll(onUpdate: (changedProp: string, data: Observable) => void) {
         this.registeredObserveAll.push(onUpdate);
     }
 
-    compute(key: string, fn: (data: ObservableObject) => void) {
+    compute(key: string, fn: (data: Observable) => void) {
         this.registeredComputes[key] = fn;
+    }
+
+    computeMany(computes: { [key: string]: (data: Observable) => void }) {
+        for (const key in computes) this.compute(key, computes[key]);
     }
 }

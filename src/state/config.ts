@@ -11,11 +11,18 @@ export const config = reactive({
     speed: 1
 });
 
-config.compute('algorithmInstance', ({ algorithm }) => algorithmMap.get(algorithm));
+config.computeMany({
+    algorithmInstance: ({ algorithm }) => {
+        return algorithmMap.get(algorithm)
+    },
 
-config.compute('switchDuration', ({ speed }) => 120 / speed);
+    switchDuration: ({ speed }) => {
+        return 120 / speed
+    },
 
-config.compute('barWidth', ({ width, margin, amount }) => {
-    const barWidth = (width - margin * (amount - 1)) / amount;
-    return barWidth > 0 ? barWidth : 0;
+    barWidth: ({ width, margin, amount }) => {
+        const w = (width - margin * (amount - 1)) / amount;
+
+        return w > 0 ? w : 0;
+    }
 });
