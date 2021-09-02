@@ -16,8 +16,8 @@ export abstract class Algorithm {
 
     public start() {
         if (this.state !== 'idle') return;
-
         this.state = 'sorting';
+
         this.onStart();
         this.sort().then(this.done.bind(this));
     }
@@ -25,11 +25,13 @@ export abstract class Algorithm {
     public pause() {
         if (this.state !== 'sorting') return;
         this.state = 'idle';
+
         this.onPause();
     }
 
     public reset() {
         this.state = 'idle';
+
         this.onReset();
     }
 
