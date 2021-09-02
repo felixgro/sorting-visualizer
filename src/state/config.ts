@@ -2,7 +2,7 @@ import { algorithmMap } from '../algorithms/_map';
 import { reactive } from '../utils/reactive';
 
 export const config = reactive({
-    algorithm: 'bubble-sort',
+    algorithm: 'quick-sort',
     width: 500,
     height: 200,
     amount: 50,

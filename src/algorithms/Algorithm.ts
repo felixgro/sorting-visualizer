@@ -12,7 +12,7 @@ export abstract class Algorithm {
     protected onPause() { };
     protected onReset() { };
 
-    protected abstract sort(): any;
+    protected abstract sort(...args: any[]): any;
 
     public start() {
         if (this.state !== 'idle') return;
