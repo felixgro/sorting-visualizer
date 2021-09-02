@@ -15,6 +15,8 @@ config.observeAll((changedProp) => {
 
 // Keyboard Shortcuts
 document.onkeydown = (e: KeyboardEvent) => {
+    if (!e.ctrlKey) return;
+
     if (e.key === 's') sorter.start();
     if (e.key === 'p') sorter.pause();
     if (e.key === 'r') sorter.reset();

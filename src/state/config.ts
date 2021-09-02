@@ -7,7 +7,7 @@ export const config = reactive({
     height: 200,
     amount: 50,
     margin: 5,
-    min: 50,
+    min: 20,
     speed: 1
 });
 

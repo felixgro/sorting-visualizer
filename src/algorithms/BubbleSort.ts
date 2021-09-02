@@ -11,10 +11,8 @@ export class BubbleSort extends Algorithm {
         const a = this.data[this.index],
             b = this.data[this.index + 1];
 
-        if (a.state === 'sorted') return this.done();
-
+        if (a.state === 'sorted') return;
         a.state = 'active';
-
         if (this.state !== 'sorting') return;
 
         if (!b || b.state === 'sorted') {

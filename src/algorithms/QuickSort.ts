@@ -1,5 +1,4 @@
 import { Algorithm } from './Algorithm';
-import { DataRect } from '../DataRect';
 
 export class QuickSort extends Algorithm {
     private initialized = false;
@@ -22,7 +21,7 @@ export class QuickSort extends Algorithm {
 
         const index = await this.partition(fromIndex, toIndex);
 
-        await Promise.all([
+        return await Promise.all([
             this.sort(fromIndex, index - 1),
             this.sort(index + 1, toIndex),
         ]);

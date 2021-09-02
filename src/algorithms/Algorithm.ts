@@ -12,19 +12,18 @@ export abstract class Algorithm {
     protected onPause() { };
     protected onReset() { };
 
-    protected abstract sort(...args: any[]): any;
+    protected async sort(...args: any[]): Promise<any> { };
 
     public start() {
         if (this.state !== 'idle') return;
 
         this.state = 'sorting';
         this.onStart();
-        this.sort();
+        this.sort().then(this.done.bind(this));
     }
 
     public pause() {
         if (this.state !== 'sorting') return;
-
         this.state = 'idle';
         this.onPause();
     }
@@ -35,10 +34,11 @@ export abstract class Algorithm {
     }
 
     public done() {
+        if (this.state !== 'sorting') return;
         this.state = 'done';
     }
 
     protected sleep() {
-        return new Promise(resolve => setTimeout(resolve, config.get('switchDuration') / 2));
+        return new Promise(resolve => setTimeout(resolve, config.get('switchDuration') / 1.5));
     }
 }
