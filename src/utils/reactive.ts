@@ -8,9 +8,13 @@ export class ReactiveObject<Observable> {
     private registeredComputes: { [key: string]: (data: Observable) => void } = {};
     private registeredObserveAll: Array<(changedProp: string, data: Observable) => void> = [];
 
+    private initialData: Observable;
+
     constructor(
         public data: Observable
-    ) { }
+    ) {
+        this.initialData = { ...data };
+    }
 
     get(key: string): any {
         if (this.registeredComputes[key])
@@ -49,5 +53,13 @@ export class ReactiveObject<Observable> {
 
     computeMany(computes: { [key: string]: (data: Observable) => void }) {
         for (const key in computes) this.compute(key, computes[key]);
+    }
+
+    reset(callObservers = false) {
+        if (callObservers) {
+            for (const key in this.initialData) this.update(key, this.initialData[key]);
+        } else {
+            this.data = this.initialData;
+        }
     }
 }
